@@ -1,0 +1,9 @@
+{
+  "server_url": "wss://tunnel.suadominio.io/ws",
+  "token": "your-agent-token-here",
+  "agent_id": "your-agent-id-here",
+  "auto_reconnect": true,
+  "heartbeat_interval": 30000,
+  "max_reconnect_attempts": 5,
+  "reconnect_delay": 5000
+}
