@@ -27,8 +27,21 @@ export const SocketProvider = ({ children }) => {
       if (process.env.REACT_APP_SERVER_URL) {
         serverUrl = process.env.REACT_APP_SERVER_URL;
       } else if (isHttps) {
-        // Use HTTPS for production
-        serverUrl = `https://api.${currentHost}`;
+        // Use HTTPS for production - construct API URL properly
+        // Extract base domain from current host
+        let baseDomain;
+        if (currentHost.startsWith('tunnel.')) {
+          // If already on tunnel subdomain, use the base domain
+          baseDomain = currentHost.replace('tunnel.', '');
+        } else if (currentHost.includes('tunnel.')) {
+          // If on a subdomain of tunnel, extract the base
+          const parts = currentHost.split('.');
+          baseDomain = parts.slice(1).join('.');
+        } else {
+          // Use current host as base
+          baseDomain = currentHost;
+        }
+        serverUrl = `https://api.tunnel.${baseDomain}`;
       } else {
         // Use HTTP for development
         serverUrl = 'http://localhost:3001';
