@@ -19,6 +19,8 @@ services:
     volumes:
       - ./logs:/app/logs
     restart: unless-stopped
+    networks:
+      - tunnel-network
 
   # MongoDB database
   mongo:
@@ -33,6 +35,8 @@ services:
       - mongo_data:/data/db
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     restart: unless-stopped
+    networks:
+      - tunnel-network
 
   # Redis for caching and sessions
   redis:
@@ -42,18 +46,8 @@ services:
     volumes:
       - redis_data:/data
     restart: unless-stopped
-
-  # Nginx reverse proxy
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "8080:80"
-    volumes:
-      - ./nginx-dev.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - app
-      - client
-    restart: unless-stopped
+    networks:
+      - tunnel-network
 
   # Client (React app)
   client:
@@ -66,7 +60,13 @@ services:
     depends_on:
       - app
     restart: unless-stopped
+    networks:
+      - tunnel-network
 
 volumes:
   mongo_data:
   redis_data:
+
+networks:
+  tunnel-network:
+    driver: bridge
