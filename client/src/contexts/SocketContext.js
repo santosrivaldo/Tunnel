@@ -19,11 +19,30 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
     if (isAuthenticated && user) {
-      const newSocket = io(process.env.REACT_APP_SERVER_URL || 'http://192.241.155.236:3001', {
+      // Determine the correct protocol and URL based on current location
+      const isHttps = window.location.protocol === 'https:';
+      const currentHost = window.location.hostname;
+      
+      let serverUrl;
+      if (process.env.REACT_APP_SERVER_URL) {
+        serverUrl = process.env.REACT_APP_SERVER_URL;
+      } else if (isHttps) {
+        // Use HTTPS for production
+        serverUrl = `https://api.${currentHost}`;
+      } else {
+        // Use HTTP for development
+        serverUrl = 'http://localhost:3001';
+      }
+      
+      console.log('Connecting to WebSocket:', serverUrl);
+      
+      const newSocket = io(serverUrl, {
         auth: {
           token: localStorage.getItem('token')
         },
-        autoConnect: true
+        autoConnect: true,
+        secure: isHttps,
+        transports: ['websocket', 'polling']
       });
 
       newSocket.on('connect', () => {

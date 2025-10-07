@@ -61,7 +61,7 @@ services:
     ports:
       - "3002:80"
     environment:
-      - REACT_APP_SERVER_URL=http://app:3000
+      - REACT_APP_SERVER_URL=https://api.tunnel.suadominio.io
       - REACT_APP_BASE_DOMAIN=tunnel.suadominio.io
     depends_on:
       - app
