@@ -41,7 +41,7 @@ export const SocketProvider = ({ children }) => {
           // Use current host as base
           baseDomain = currentHost;
         }
-        serverUrl = `https://api.tunnel.${baseDomain}`;
+        serverUrl = `https://tunnel.${baseDomain}`;
       } else {
         // Use HTTP for development
         serverUrl = 'http://localhost:3001';

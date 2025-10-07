@@ -19,7 +19,7 @@ fi
 
 # Testar API via domínio
 echo "2. Testando API via domínio:"
-if curl -f https://api.tunnel.tudoparasualavanderia.com.br/api/health > /dev/null 2>&1; then
+if curl -f https://api.tudoparasualavanderia.com.br/api/health > /dev/null 2>&1; then
     echo "   ✅ API via domínio funcionando"
 else
     echo "   ❌ API via domínio não está respondendo"
@@ -27,7 +27,7 @@ fi
 
 # Testar WebSocket endpoint
 echo "3. Testando endpoint WebSocket:"
-if curl -f https://api.tunnel.tudoparasualavanderia.com.br/socket.io/ > /dev/null 2>&1; then
+if curl -f https://api.tudoparasualavanderia.com.br/socket.io/ > /dev/null 2>&1; then
     echo "   ✅ WebSocket endpoint acessível"
 else
     echo "   ❌ WebSocket endpoint não acessível"
@@ -36,7 +36,7 @@ fi
 echo ""
 echo "🔧 Verificações do Nginx Proxy Manager:"
 echo "   Certifique-se de que tem estes proxy hosts configurados:"
-echo "   1. api.tunnel.tudoparasualavanderia.com.br → tunnel_app_1:3000"
+echo "   1. api.tudoparasualavanderia.com.br → tunnel_app_1:3000"
 echo "   2. Websockets Support: ✅ Habilitado"
 echo "   3. SSL: ✅ Configurado"
 echo ""
@@ -44,4 +44,4 @@ echo "📋 Para ver logs do app:"
 echo "   docker-compose logs -f app"
 echo ""
 echo "🔍 Para testar WebSocket manualmente:"
-echo "   wscat -c wss://api.tunnel.tudoparasualavanderia.com.br/socket.io/"
+echo "   wscat -c wss://api.tudoparasualavanderia.com.br/socket.io/"
