@@ -108,7 +108,6 @@ const tunnelSchema = new mongoose.Schema({
 
 // Index for efficient queries
 tunnelSchema.index({ userId: 1, isActive: 1 });
-tunnelSchema.index({ subdomain: 1 });
 tunnelSchema.index({ status: 1 });
 
 // Virtual for full URL

@@ -110,8 +110,6 @@ const agentSchema = new mongoose.Schema({
 
 // Index for efficient queries
 agentSchema.index({ userId: 1, isActive: 1 });
-agentSchema.index({ token: 1 });
-agentSchema.index({ socketId: 1 });
 agentSchema.index({ status: 1 });
 
 // Method to add log entry
