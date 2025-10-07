@@ -9,7 +9,6 @@
 | **MongoDB** | 27018 | 27017 | Banco de dados |
 | **Redis** | 6380 | 6379 | Cache e sessões |
 | **Nginx HTTP** | 8080 | 80 | Proxy reverso HTTP |
-| **Nginx HTTPS** | 8443 | 443 | Proxy reverso HTTPS |
 
 ## Acesso aos Serviços
 
@@ -17,7 +16,6 @@
 - **Frontend**: http://localhost:3002
 - **API**: http://localhost:3001
 - **Nginx (HTTP)**: http://localhost:8080
-- **Nginx (HTTPS)**: https://localhost:8443
 
 ### 🗄️ Banco de Dados
 - **MongoDB**: localhost:27018
